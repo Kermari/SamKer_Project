@@ -1,0 +1,265 @@
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #666;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+button {
+    display: inline-block;
+    background: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background: #555;
+}
+
+#Back {
+    padding: 10px;
+    width: 75px;
+    height: 40px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+}
+
+#Back:hover {
+    background-color: #004f93;
+    box-shadow: 0px 15px 20px #55b0ff;
+    color: #fff;
+    transform: translateY(-7px);
+}
+
+
+.error-list {
+    background: #ffebee;
+    color: #c62828;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+
+    textarea {
+        font-size: 16px;
+    }
+
+    button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+#update {
+    width: 140px;
+    height: 45px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+}
+
+#update {
+    position: fixed;
+    bottom: 50px;
+    right: 30px;
+    width: 145px;
+    height: 45px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 50px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    outline: none;
+
+    z-index: 1000;
+    /* Ensure it stays above other elements */
+}
+
+
+#update:hover {
+    background-color: #004f93;
+    box-shadow: 0px 15px 20px #55b0ff;
+    color: #fff;
+    transform: translateY(-7px);
+}
+
+
+/* --- Media queries for responsiveness --- */
+
+#update a {
+    color: inherit;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#update i {
+    display: none;
+}
+
+/* --- Media queries for responsiveness --- */
+@media (max-width: 768px) {
+    #update {
+        bottom: 30px;
+        right: 15px;
+        padding: 12px;
+        height: 50px;
+        width: auto;
+        /* Adjust width for smaller screens */
+        height: auto;
+        /* Adjust height for smaller screens */
+        font-size: 0;
+        /* Hide text */
+    }
+
+    .form-field {
+        max-width: 80%;
+    }
+
+    #update i {
+        display: block;
+        /* Show icon */
+        font-size: 20px;
+        /* Adjust icon size */
+    }
+
+    #update box-icon {
+        display: none;
+        /* Hide box-icon */
+    }
+}
+
+/* Add these styles to your existing CSS or in a <style> tag in the head */
+textarea {
+    font-size: 16px;
+    /* Base font size */
+    line-height: 1.5;
+}
+
+@media screen and (min-width: 768px) {
+    textarea {
+        font-size: 18px;
+        /* Larger font size for tablets and up */
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    textarea {
+        font-size: 20px;
+        /* Even larger font size for desktops */
+    }
+}
+
+/* Increase the size of the textarea itself */
+#title {
+    height: 50px;
+    /* Adjust as needed */
+}
+
+#description {
+    height: 100px;
+    /* Adjust as needed */
+}
+
+#content {
+    height: 300px;
+    /* Adjust as needed */
+}
+
+/* Make sure the textarea adjusts to different screen sizes */
+@media screen and (max-width: 768px) {
+
+    #title,
+    #description,
+    #content {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+.alert-success {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    padding: 20px;
+    background-color: #dff0d8;
+    border: 1px solid #d6e9c6;
+    color: #3c763d;
+    border-radius}
