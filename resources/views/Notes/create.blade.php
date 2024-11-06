@@ -20,59 +20,97 @@
 
     <div class="container">
         <h1> Create a note :D </h1>
-        <div>
-            @if($errors->any())
+
+        @if($errors->any())
+        <div class="error-list">
             <ul>
                 @foreach ($errors->all() as $error)
                 <li>{{$error}}</li>
 
                 @endforeach
             </ul>
+</div>
             @endif
+
+
+            <form method="post" action="{{route('note.store')}}">
+                @csrf
+                @method('post')
+
+                <div id="margin">
+
+                    <div class="form-field">
+                        <label for="title">Title</label>
+                        <textarea id="title" name="title" maxlength="255">{{old('title')}}</textarea>
+                        <div class="word-count" id="titleCount"></div>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="description">Description</label>
+                        <textarea id="description" name="description" maxlength="255" placeholder="Brief excerpt...">{{old('description')}}</textarea>
+                        <div class="word-count" id="descriptionCount"></div>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="content">Content</label>
+                        <textarea id="content" name="content" placeholder="Write something here..." maxlength="10000">{{old('content')}}</textarea>
+                        <div class="word-count" id="contentCount"></div>
+                    </div>
+
+                </div>
+                <div>
+                    <button id="update" type="submit"><i class="fa-regular fa-circle-check"></i> Save note</button>
+                </div>
+
+            </form>
+
+            <div>
+                <a href="{{ route('note.index') }}" class="btn-link">
+                    <button type="button" id="Back">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </button>
+                </a>
+            </div>
+
+
         </div>
 
-        <form method="post" action="{{route('note.store')}}">
-            @csrf
-            @method('post')
-
-            <div id="margin">
-
-                <div class="form-field">
-                    <label>Title</label>
-                    <textarea id="text1" name="title">{{old('title')}}</textarea>
-                </div>
-
-                <div class="form-field">
-                    <label>Description</label>
-                    <textarea id="text1" name="description" placeholder="Brief excerpt...">{{old('description')}}</textarea>
-                </div>
-
-                <div class="form-field">
-                    <label>Content</label>
-                    <textarea id="text" name="content" maxlength="10000" placeholder="Write something here...">{{old('content')}}</textarea>
-                </div>
-
-            </div>
-            <div>
-                <button id="update" type="submit"><i class="fa-regular fa-circle-check"></i> Save note</button>
-            </div>
-
-        </form>
-            <div>
-                <button id="Back" onclick="goBack()"><box-icon name='left-arrow-alt'>Back</box-icon></button>
-            </div>
-
-
-        </div>
-
-        <script>
-            function goBack() {
-                window.history.back();
-            }
-        </script>
-
-        </script>
-    </div>
 </body>
+<script>
+    console.log('Script started');
+
+    function countWords(str) {
+        return str.trim().split(/\s+/).filter(Boolean).length;
+    }
+
+    function updateWordCount(textareaId, counterId) {
+        console.log(`Updating word count for ${textareaId}`);
+        const textarea = document.getElementById(textareaId);
+        const counter = document.getElementById(counterId);
+
+        if (!textarea || !counter) {
+            console.error(`Textarea or counter not found for ${textareaId}`);
+            return;
+        }
+
+        function updateCount() {
+            const wordCount = countWords(textarea.value);
+            const charCount = textarea.value.length;
+            counter.textContent = `Words: ${wordCount} | Characters: ${charCount}`;
+            console.log(`Updated count for ${textareaId}: ${counter.textContent}`);
+        }
+
+        textarea.addEventListener('input', updateCount);
+        updateCount(); // Initial count
+    }
+
+    // Wait for the DOM to be fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('DOM fully loaded');
+        updateWordCount('title', 'titleCount');
+        updateWordCount('description', 'descriptionCount');
+        updateWordCount('content', 'contentCount');
+    });
+</script>
 
 </html>

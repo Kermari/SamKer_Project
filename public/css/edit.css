@@ -3,7 +3,7 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
 }
 
 .container {
@@ -180,11 +180,9 @@ button:hover {
         padding: 12px;
         height: 50px;
         width: auto;
-        /* Adjust width for smaller screens */
         height: auto;
-        /* Adjust height for smaller screens */
         font-size: 0;
-        /* Hide text */
+
     }
 
     .form-field {
@@ -193,21 +191,17 @@ button:hover {
 
     #update i {
         display: block;
-        /* Show icon */
+
         font-size: 20px;
-        /* Adjust icon size */
-    }
+}
 
     #update box-icon {
         display: none;
-        /* Hide box-icon */
     }
 }
 
-/* Add these styles to your existing CSS or in a <style> tag in the head */
 textarea {
     font-size: 16px;
-    /* Base font size */
     line-height: 1.5;
 }
 
@@ -262,4 +256,11 @@ textarea {
     background-color: #dff0d8;
     border: 1px solid #d6e9c6;
     color: #3c763d;
-    border-radius}
+
+}
+.word-count {
+    font-size: 12px;
+    color: #666;
+    text-align: right;
+    margin-top: 5px;
+}

@@ -23,7 +23,7 @@ class NoteController
     {
         $data = $request->validate([
             'title' => 'required|max:255',
-            'description' => 'nullable|max:255',
+            'description' => 'required|max:255',
             'content' => 'required|max:10000',
         ]);
 
