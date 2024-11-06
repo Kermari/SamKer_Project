@@ -261,6 +261,8 @@ dialog button {
     justify-content: center;
 }
 
+
+
 table {
     border-collapse: separate;
     border-spacing: 0;
@@ -278,7 +280,7 @@ td {
 }
 
 th {
-    background-color: #f2f2f2;
+    background: linear-gradient(to top, #fff1eb 0%, #ace0f9 100%);;
 }
 
 tr:first-child th:nth-child(2) {
@@ -329,11 +331,12 @@ dialog#view-note {
     display: flex;
     flex-direction: column;
     height: 100%;
+    
 }
 
 .dialog-header {
     padding: 15px;
-    background-color: #004e933b;
+    background: radial-gradient(circle at 10% 20%, rgb(242, 235, 243) 0%, rgb(234, 241, 249) 90.1%);
     border-bottom: 1px solid #ddd;
     display: flex;
     justify-content: space-between;
