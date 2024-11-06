@@ -377,6 +377,16 @@ dialog#view-note {
     gap: 10px;
 }
 
+@media screen and (max-width: 600px) {
+
+    .list-item1,
+    .list-item2,
+    .list-item3 {
+        display: inline-block;
+        width: 100%;
+    }
+}
+
 @media (max-width: 480px) {
     dialog#view-note {
         width: 95%;
