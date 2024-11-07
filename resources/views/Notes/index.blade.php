@@ -61,6 +61,11 @@
                                 <div class="note-section">
                                     <h3>Content</h3>
                                     <p id="note-content"></p>
+                                    <div class="note-section">
+                                        <h3>Dates</h3>
+                                        <p>Created: <span id="note-created-at"></p>
+                                        <p>Updated: <span id="note-updated-at"></p>
+                                    </div>
                                 </div>
                             </div>
                             <div class="dialog-footer">
@@ -105,11 +110,17 @@
         const deleteButton = document.getElementById("delete-button");
         const deleteDialog = document.getElementById("delete-note");
         const deleteNoteForm = document.getElementById("delete-note-form")
+        const viewNoteCreateAt = document.getElementById("note-created-at")
+        const viewNoteUpdateAt = document.getElementById("note-updated-at")
 
         function showViewNoteDialog(note) {
             noteTitle.textContent = note.title;
             descriptionElement.textContent = note.description;
             noteContent.textContent = note.content;
+            viewNoteCreateAt.textContent  = formatDate(note.created_at);
+            viewNoteUpdateAt.textContent =  formatDate(note.updated_at);
+
+
             editButton.onclick = function() {
                 dialog.close()
                 window.location.href = `/note/${note.id}/edit`;
@@ -125,6 +136,23 @@
 
         function closeViewDialog() {
             dialog.close();
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const months = [
+                'January', 'February', 'March', 'April', 'May', 'June',
+                'July', 'August', 'September', 'October', 'November', 'December'
+            ];
+
+            const year = date.getFullYear();
+            const month = months[date.getMonth()];
+            const day = date.getDate();
+            const hour = date.getHours().toString().padStart(2, '0');
+            const minute = date.getMinutes().toString().padStart(2, '0');
+            const ampm = hour >= 12 ? 'PM' : 'AM';
+
+            return `${month} ${day}, ${year} at ${hour}:${minute} ${ampm}`;
         }
 
         function showDeleteNoteDialog(id) {
@@ -216,32 +244,31 @@
         });
 
         document.addEventListener('DOMContentLoaded', function() {
-    const titleCells = document.querySelectorAll('.title-cell');
-    const descriptionCells = document.querySelectorAll('.description-cell');
-    const maxLength = 30; // Adjust this value as needed
+            const titleCells = document.querySelectorAll('.title-cell');
+            const descriptionCells = document.querySelectorAll('.description-cell');
+            const maxLength = 30;
 
-    function truncateText(cell, maxLength) {
-        const fullText = cell.dataset.fullTitle || cell.dataset.fullDescription;
-        const truncatedSpan = cell.querySelector('.truncated-title') || cell.querySelector('.truncated-description');
+            function truncateText(cell, maxLength) {
+                const fullText = cell.dataset.fullTitle || cell.dataset.fullDescription;
+                const truncatedSpan = cell.querySelector('.truncated-title') || cell.querySelector('.truncated-description');
 
-        if (fullText.length > maxLength) {
-            let truncated = fullText.substr(0, maxLength);
-            let lastSpaceIndex = truncated.lastIndexOf(' ');
-            if (lastSpaceIndex > 0) {
-                truncated = truncated.substr(0, lastSpaceIndex);
+                if (fullText.length > maxLength) {
+                    let truncated = fullText.substr(0, maxLength);
+                    let lastSpaceIndex = truncated.lastIndexOf(' ');
+                    if (lastSpaceIndex > 0) {
+                        truncated = truncated.substr(0, lastSpaceIndex);
+                    }
+                    truncatedSpan.textContent = truncated + '...';
+                } else {
+                    truncatedSpan.textContent = fullText;
+                }
+
+                cell.title = fullText;
             }
-            truncatedSpan.textContent = truncated + '...';
-        } else {
-            truncatedSpan.textContent = fullText;
-        }
 
-        cell.title = fullText; // Add full text as tooltip
-    }
-
-    titleCells.forEach(cell => truncateText(cell, maxLength));
-    descriptionCells.forEach(cell => truncateText(cell, maxLength));
-});
-
+            titleCells.forEach(cell => truncateText(cell, maxLength));
+            descriptionCells.forEach(cell => truncateText(cell, maxLength));
+        });
     </script>
 
 </body>

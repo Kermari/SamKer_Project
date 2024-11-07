@@ -16,7 +16,8 @@ return new class extends Migration
             $table->string('title', length: 255);
             $table->string('description', length: 255);
             $table->text('content');
-            $table->timestamps();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrentOnUpdate();
         });
     }
 
